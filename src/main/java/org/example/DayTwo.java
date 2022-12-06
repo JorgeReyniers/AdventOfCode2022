@@ -10,32 +10,32 @@ public class DayTwo {
     public int execute(ArrayList<String> inputDayTwo) {
         int totalScore = 0;
         for(String round: inputDayTwo) {
-            String myMove = round.split(" ")[1];
-            totalScore += calculateGameScore(round);
-            totalScore += calculateMoveScore(myMove);
+            String gameResult = round.split(" ")[1];
+            totalScore += calculateGameScore(gameResult);
+            totalScore += calculateMoveScore(round);
         }
         return totalScore;
     }
 
-    private int calculateMoveScore(String myMove) {
-        return Arrays.asList("X", "Y", "Z").indexOf(myMove) + 1;
+    private int calculateGameScore(String gameResult) {
+        return Arrays.asList("X", "Y", "Z").indexOf(gameResult) * 3;
     }
 
-    private int calculateGameScore(String round) {
-        if (iWin(round)) {
-            return 6;
-        } else if (draw(round)) {
-            return 3;
+    private int calculateMoveScore(String round) {
+        if (rock(round)) {
+            return 1;
+        } else if (paper(round)) {
+            return 2;
         } else {
-            return 0;
+            return 3;
         }
     }
 
-    private boolean iWin(String round) {
-        return Arrays.asList("A Y", "B Z", "C X").contains(round);
+    private boolean rock(String round) {
+        return Arrays.asList("A Y", "B X", "C Z").contains(round);
     }
 
-    private boolean draw(String round) {
-        return Arrays.asList("A X", "B Y", "C Z").contains(round);
+    private boolean paper(String round) {
+        return Arrays.asList("A Z", "B Y", "C X").contains(round);
     }
 }
