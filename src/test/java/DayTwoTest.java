@@ -1,4 +1,3 @@
-import org.example.DayOne;
 import org.example.DayTwo;
 import org.example.Utils;
 import org.junit.jupiter.api.Assertions;
@@ -7,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DayTwoTest {
 
