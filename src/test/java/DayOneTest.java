@@ -15,9 +15,9 @@ public class DayOneTest {
         //arrange
         DayOne dayOne = new DayOne();
         Utils utils = new Utils();
-        ArrayList<String> calories = utils.ReadFile("testDayOne.txt");
+        ArrayList<String> calories = utils.ReadFile("testDayOnePartTwo.txt");
         int highestCalories = dayOne.execute(calories);
-        Assertions.assertEquals(10300, highestCalories);
+        Assertions.assertEquals(23400, highestCalories);
     }
 
     @Test
