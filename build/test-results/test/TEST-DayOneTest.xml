@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DayOneTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-05T07:27:33" hostname="BET9XWVYMXD4" time="0.039">
-  <properties/>
-  <testcase name="DayOneTest_NoCalories_ReturnsZero()" classname="DayOneTest" time="0.031"/>
-  <testcase name="DayOneTest_HappyFlow()" classname="DayOneTest" time="0.006"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
