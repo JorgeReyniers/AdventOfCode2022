@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
         try {
 //            ExecuteDayOne();
-            ExecuteDayTwo();
+//            ExecuteDayTwo();
+            ExecuteDayThree();
         } catch (IOException e) {
             System.out.println(e);
         } catch (URISyntaxException e) {
@@ -26,5 +27,12 @@ public class Main {
         var inputDayTwo = utils.ReadFile("dayTwo.txt");
         DayTwo dayTwo = new DayTwo();
         System.out.println(dayTwo.execute(inputDayTwo));
+    }
+
+    private static void ExecuteDayThree() throws IOException, URISyntaxException {
+        Utils utils = new Utils();
+        var inputDayThree = utils.ReadFile("dayThree.txt");
+        DayThree dayThree = new DayThree();
+        System.out.println(dayThree.execute(inputDayThree));
     }
 }
