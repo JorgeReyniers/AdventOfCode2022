@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DayTwo {
+public class DayTwo implements Day {
     public DayTwo() {
     }
 

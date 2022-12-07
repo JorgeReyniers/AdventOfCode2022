@@ -15,7 +15,9 @@ public class DayTwoTest {
         DayTwo dayTwo = new DayTwo();
         Utils utils = new Utils();
         ArrayList<String> strategyGuide = utils.ReadFile("testDayTwo.txt");
+        //act
         int totalScore = dayTwo.execute(strategyGuide);
+        //assert
         Assertions.assertEquals(12, totalScore);
     }
 }

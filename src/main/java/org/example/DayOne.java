@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.*;
 
-public class DayOne {
+public class DayOne implements Day {
     public DayOne() {
     }
 
