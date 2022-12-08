@@ -2,18 +2,26 @@ package org.example;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         try {
-//            ExecuteDayOne();
-//            ExecuteDayTwo();
-            ExecuteDayThree();
+//            Execute(new DayOne(), "dayOne.txt");
+//            Execute(new DayTwo(), "dayTwo.txt");
+//            Execute(new DayThree(), "dayThree.txt");
+            Execute(new DayFour(), "dayFour.txt");
         } catch (IOException e) {
             System.out.println(e);
         } catch (URISyntaxException e) {
             System.out.println(e);
         }
+    }
+
+    private static void Execute(Day givenDay, String inputFile) throws IOException, URISyntaxException {
+        Utils utils = new Utils();
+        ArrayList<String> inputDay = utils.ReadFile(inputFile);
+        System.out.println(givenDay.execute(inputDay));
     }
 
     private static void ExecuteDayOne() throws IOException, URISyntaxException {
