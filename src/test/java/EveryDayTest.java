@@ -65,6 +65,6 @@ public class EveryDayTest {
         //act
         int amount = dayFour.execute(assignmentPairs);
         //assert
-        Assertions.assertEquals(2, amount);
+        Assertions.assertEquals(4, amount);
     }
 }

@@ -3,6 +3,7 @@ package org.example;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ public class DayFour implements Day {
         for (String pair : input) {
             String[] sections = pair.split(",");
             List<List<Integer>> sectionRanges = Arrays.stream(sections).map(section -> determineSectionRange(section)).collect(Collectors.toList());
-            if (sectionRanges.get(0).containsAll(sectionRanges.get(1)) || sectionRanges.get(1).containsAll(sectionRanges.get(0))) amount++;
+            if (!Collections.disjoint(sectionRanges.get(0), sectionRanges.get(1))) amount++;
         }
         return amount;
     }
