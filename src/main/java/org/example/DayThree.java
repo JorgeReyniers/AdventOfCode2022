@@ -1,19 +1,26 @@
 package org.example;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class DayThree implements Day {
     private final String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
     @Override
     public int execute(ArrayList<String> input) {
+        int counter = 0;
+        List<String> threeElves = new ArrayList<>();
         int totalPriority = 0;
-        for(String rucksack: input) {
-            String compartmentOne = rucksack.substring(0,(rucksack.length()/2));
-            String compartmentTwo = rucksack.substring(rucksack.length()/2);
-            Character commonChar = findCommonChar(compartmentOne, compartmentTwo);
-            totalPriority += calculatePriority(commonChar);
+        for (String rucksack : input) {
+            counter++;
+            threeElves.add(rucksack);
+            if (counter >= 3) {
+                Character commonChar = findCommonChar(threeElves);
+                totalPriority += calculatePriority(commonChar);
+                threeElves.clear();
+                counter = 0;
+            }
         }
         return totalPriority;
     }
@@ -23,16 +30,21 @@ public class DayThree implements Day {
         return alphabet.indexOf(Character.toLowerCase(commonChar)) + extraPriority;
     }
 
-    private Character findCommonChar(String compartmentOne, String compartmentTwo) {
-        Optional<Character> commonChar = null;
+    private Character findCommonChar(List<String> threeElves) {
+        List<Character> commonChars = new ArrayList<>();
+        Optional<Character> theCommonChar = null;
+        for (Character itemType: threeElves.get(0).toCharArray()) {
+            if (threeElves.get(1).indexOf(itemType) != -1) {
+                commonChars.add(itemType);
+            }
+        }
         int i = 0;
-        while(commonChar == null) {
-            Character compartmentOneChar = compartmentOne.charAt(i);
-            if (compartmentTwo.indexOf(compartmentOneChar) != -1) {
-                commonChar = Optional.ofNullable(compartmentOneChar);
+        while (theCommonChar == null) {
+            if (commonChars.contains(threeElves.get(2).charAt(i))) {
+                theCommonChar = Optional.of(threeElves.get(2).charAt(i));
             }
             i++;
         }
-        return commonChar.get();
+        return theCommonChar.get();
     }
 }

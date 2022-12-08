@@ -19,6 +19,6 @@ public class DayThreeTest {
         //act
         int prioritySum = dayThree.execute(strategyGuide);
         //assert
-        Assertions.assertEquals(157, prioritySum);
+        Assertions.assertEquals(70, prioritySum);
     }
 }
