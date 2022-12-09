@@ -10,12 +10,19 @@ public class Main {
 //            Execute(new DayOne(), "dayOne.txt");
 //            Execute(new DayTwo(), "dayTwo.txt");
 //            Execute(new DayThree(), "dayThree.txt");
-            Execute(new DayFour(), "dayFour.txt");
+//            Execute(new DayFour(), "dayFour.txt");
+            ExecuteWithStringOutput(new DayFive(), "dayFive.txt");
         } catch (IOException e) {
             System.out.println(e);
         } catch (URISyntaxException e) {
             System.out.println(e);
         }
+    }
+
+    private static void ExecuteWithStringOutput(Day day, String inputFile) throws IOException, URISyntaxException {
+        Utils utils = new Utils();
+        ArrayList<String> inputDay = utils.ReadFile(inputFile);
+        System.out.println(day.executeWithStringOutput(inputDay));
     }
 
     private static void Execute(Day givenDay, String inputFile) throws IOException, URISyntaxException {

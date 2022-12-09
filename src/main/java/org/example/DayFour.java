@@ -19,6 +19,11 @@ public class DayFour implements Day {
         return amount;
     }
 
+    @Override
+    public String executeWithStringOutput(ArrayList<String> input) {
+        return null;
+    }
+
     private List<Integer> determineSectionRange(String section) {
         int sectionStart = Integer.parseInt(section.split("-")[0]);
         int sectionEnd = Integer.parseInt(section.split("-")[1]);

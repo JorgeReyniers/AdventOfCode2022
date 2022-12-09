@@ -67,4 +67,16 @@ public class EveryDayTest {
         //assert
         Assertions.assertEquals(4, amount);
     }
+
+    @Test
+    void DayFive() throws IOException, URISyntaxException {
+        //arrange
+        DayFive dayFive = new DayFive();
+        Utils utils = new Utils();
+        ArrayList<String> assignmentPairs = utils.ReadFile("testDayFive.txt");
+        //act
+        String topCrates = dayFive.executeWithStringOutput(assignmentPairs);
+        //assert
+        Assertions.assertEquals("CMZ", topCrates);
+    }
 }
