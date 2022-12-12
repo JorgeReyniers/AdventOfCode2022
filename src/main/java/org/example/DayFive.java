@@ -39,8 +39,12 @@ public class DayFive implements Day {
         int to = Integer.parseInt(movingInstructionParts[5]);
         Stack<Character> fromStackOfCrates = stacksOfCrates.get(from-1);
         Stack<Character> toStackOfCrates = stacksOfCrates.get(to-1);
+        Stack<Character> stackBetween = new Stack<>();
         for (int i = 0; i < amount; i++) {
-            toStackOfCrates.push(fromStackOfCrates.pop());
+            stackBetween.push(fromStackOfCrates.pop());
+        }
+        for (int i = 0; i < amount; i++) {
+            toStackOfCrates.push(stackBetween.pop());
         }
     }
 

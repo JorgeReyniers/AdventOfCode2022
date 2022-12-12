@@ -77,6 +77,6 @@ public class EveryDayTest {
         //act
         String topCrates = dayFive.executeWithStringOutput(assignmentPairs);
         //assert
-        Assertions.assertEquals("CMZ", topCrates);
+        Assertions.assertEquals("MCD", topCrates);
     }
 }
