@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class DaySeven implements Day {
     @Override
@@ -15,41 +15,34 @@ public class DaySeven implements Day {
 //        14848514 b.txt
 //        8504156 c.dat
 //        dir d
-        String currentDirectory = "";
-        for (String command : input) {
+        MapNode currentDirectory = new MapNode(null, "/");
+        for (String command : input.stream().skip(1).collect(Collectors.toList())) {
             if (command.contains("cd")) {
-                TreeMap<Integer, String> employees = new TreeMap<>();
+                if (command.contains("..")) {
+                    currentDirectory = currentDirectory.getParent();
+                } else {
+                    String goToDirectory = command.replace("$ cd ","");
+                    if (currentDirectory.hasChild(goToDirectory)) {
+                        currentDirectory = currentDirectory.goToChild(goToDirectory);
+                    } else {
+//                        create new directory, add to parent and go to child
+                    }
+                }
             }
         }
         return 0;
     }
 }
 
-class RootDirectory {
-    private List<MapNode> childen;
-
-    public RootDirectory(List<MapNode> childen) {
-        this.childen = childen;
-    }
-
-    public List<MapNode> getChilden() {
-        return childen;
-    }
-
-    public void setChilden(List<MapNode> childen) {
-        this.childen = childen;
-    }
-}
-
 class MapNode {
     private List<MapNode> children;
     private MapNode parent;
+    private String name;
     private int totalSize;
 
-    MapNode(List<MapNode> children, MapNode parent, int totalSize) {
-        this.children = children;
+    MapNode(MapNode parent, String name) {
         this.parent = parent;
-        this.totalSize = totalSize;
+        this.name = name;
     }
 
     public List<MapNode> getChildren() {
@@ -74,5 +67,23 @@ class MapNode {
 
     public void setTotalSize(int totalSize) {
         this.totalSize = totalSize;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean hasChild(String goToDirectory) {
+//        todo
+        return true;
+    }
+
+    public MapNode goToChild(String goToDirectory) {
+//        todo
+        return null;
     }
 }
