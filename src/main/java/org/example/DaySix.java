@@ -9,12 +9,12 @@ public class DaySix implements Day {
         String signal = input.get(0);
         String[] symbols = signal.split("");
         int from = 0;
-        String[] subset = Arrays.copyOfRange(symbols, from, from+4);
+        String[] subset = Arrays.copyOfRange(symbols, from, from+14);
         while (Arrays.stream(subset).distinct().count() != subset.length) {
             from++;
-            subset = Arrays.copyOfRange(symbols, from, from+4);
+            subset = Arrays.copyOfRange(symbols, from, from+14);
         }
-        return from+4;
+        return from+14;
     }
 
     @Override

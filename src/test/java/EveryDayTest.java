@@ -88,6 +88,6 @@ public class EveryDayTest {
         //act
         int marker = daySix.execute(signal);
         //assert
-        Assertions.assertEquals(10, marker);
+        Assertions.assertEquals(29, marker);
     }
 }
