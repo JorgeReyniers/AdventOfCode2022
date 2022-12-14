@@ -17,8 +17,4 @@ public class DaySix implements Day {
         return from+14;
     }
 
-    @Override
-    public String executeWithStringOutput(ArrayList<String> input) {
-        return null;
-    }
 }

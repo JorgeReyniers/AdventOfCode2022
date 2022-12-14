@@ -4,14 +4,8 @@ import java.util.List;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-public class DayFive implements Day {
-    @Override
-    public int execute(ArrayList<String> input) {
-        return 0;
-    }
-
-    @Override
-    public String executeWithStringOutput(ArrayList<String> input) {
+public class DayFive {
+    public String execute(ArrayList<String> input) {
         List<Stack<Character>> stacksOfCratesReversed = readStacksOfCrates(input);
         List<Stack<Character>> stacksOfCrates = new ArrayList<>();
         for(Stack<Character> stack : stacksOfCratesReversed){

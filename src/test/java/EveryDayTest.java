@@ -24,7 +24,6 @@ public class EveryDayTest {
     void DayOne_NoCalories_ReturnsZero() {
         //arrange
         DayOne dayOne = new DayOne();
-        Utils utils = new Utils();
         ArrayList<String> calories = new ArrayList<>(Arrays.asList(""));
         //act
         int highestCalories = dayOne.execute(calories);
@@ -75,7 +74,7 @@ public class EveryDayTest {
         Utils utils = new Utils();
         ArrayList<String> assignmentPairs = utils.ReadFile("testDayFive.txt");
         //act
-        String topCrates = dayFive.executeWithStringOutput(assignmentPairs);
+        String topCrates = dayFive.execute(assignmentPairs);
         //assert
         Assertions.assertEquals("MCD", topCrates);
     }
@@ -89,5 +88,16 @@ public class EveryDayTest {
         int marker = daySix.execute(signal);
         //assert
         Assertions.assertEquals(29, marker);
+    }
+    @Test
+    void DaySeven() throws IOException, URISyntaxException {
+        //arrange
+        DaySeven daySeven = new DaySeven();
+        Utils utils = new Utils();
+        ArrayList<String> commands = utils.ReadFile("testDaySeven.txt");
+        //act
+        int totalMemory = daySeven.execute(commands);
+        //assert
+        Assertions.assertEquals(95437, totalMemory);
     }
 }

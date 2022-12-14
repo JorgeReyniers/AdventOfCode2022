@@ -21,11 +21,6 @@ public class DayOne implements Day {
         return highestCalories.stream().mapToInt(i -> i).sum();
     }
 
-    @Override
-    public String executeWithStringOutput(ArrayList<String> input) {
-        return null;
-    }
-
     private static void addCurrentCaloriesWhenHighEnough(List<Integer> highestCalories, int currentCalories) {
         Optional<Integer> lowestCalorie = highestCalories.stream().findFirst();
         if (highestCalories.stream().count() < 3) {

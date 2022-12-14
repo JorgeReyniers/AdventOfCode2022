@@ -1,6 +1,5 @@
 package org.example;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,11 +16,6 @@ public class DayFour implements Day {
             if (!Collections.disjoint(sectionRanges.get(0), sectionRanges.get(1))) amount++;
         }
         return amount;
-    }
-
-    @Override
-    public String executeWithStringOutput(ArrayList<String> input) {
-        return null;
     }
 
     private List<Integer> determineSectionRange(String section) {

@@ -11,7 +11,7 @@ public class Main {
 //            execute(new DayTwo(), "dayTwo.txt");
 //            execute(new DayThree(), "dayThree.txt");
 //            execute(new DayFour(), "dayFour.txt");
-//            executeWithStringOutput(new DayFive(), "dayFive.txt");
+//            executeDayFive(new DayFive(), "dayFive.txt");
             execute(new DaySix(), "daySix.txt");
         } catch (IOException e) {
             System.out.println(e);
@@ -20,10 +20,10 @@ public class Main {
         }
     }
 
-    private static void executeWithStringOutput(Day day, String inputFile) throws IOException, URISyntaxException {
+    private static void executeDayFive(DayFive dayFive, String inputFile) throws IOException, URISyntaxException {
         Utils utils = new Utils();
         ArrayList<String> inputDay = utils.ReadFile(inputFile);
-        System.out.println(day.executeWithStringOutput(inputDay));
+        System.out.println(dayFive.execute(inputDay));
     }
 
     private static void execute(Day givenDay, String inputFile) throws IOException, URISyntaxException {

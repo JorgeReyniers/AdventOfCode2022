@@ -17,11 +17,6 @@ public class DayTwo implements Day {
         return totalScore;
     }
 
-    @Override
-    public String executeWithStringOutput(ArrayList<String> input) {
-        return null;
-    }
-
     private int calculateGameScore(String gameResult) {
         return Arrays.asList("X", "Y", "Z").indexOf(gameResult) * 3;
     }

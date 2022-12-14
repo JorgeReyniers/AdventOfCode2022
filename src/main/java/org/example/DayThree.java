@@ -25,11 +25,6 @@ public class DayThree implements Day {
         return totalPriority;
     }
 
-    @Override
-    public String executeWithStringOutput(ArrayList<String> input) {
-        return null;
-    }
-
     private int calculatePriority(Character commonChar) {
         int extraPriority = Character.isUpperCase(commonChar) ? 27 : 1;
         return alphabet.indexOf(Character.toLowerCase(commonChar)) + extraPriority;
