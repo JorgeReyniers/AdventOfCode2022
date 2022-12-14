@@ -79,4 +79,15 @@ public class EveryDayTest {
         //assert
         Assertions.assertEquals("MCD", topCrates);
     }
+    @Test
+    void DaySix() throws IOException, URISyntaxException {
+        //arrange
+        DaySix daySix = new DaySix();
+        Utils utils = new Utils();
+        ArrayList<String> signal = utils.ReadFile("testDaySix.txt");
+        //act
+        int marker = daySix.execute(signal);
+        //assert
+        Assertions.assertEquals(10, marker);
+    }
 }
