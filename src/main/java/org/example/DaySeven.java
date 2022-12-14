@@ -21,6 +21,7 @@ public class DaySeven implements Day {
                 TreeMap<Integer, String> employees = new TreeMap<>();
             }
         }
+        return 0;
     }
 }
 
