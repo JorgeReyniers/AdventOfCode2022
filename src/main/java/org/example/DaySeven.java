@@ -16,7 +16,7 @@ public class DaySeven implements Day {
 //        8504156 c.dat
 //        dir d
         MapNode currentDirectory = new MapNode(null, "/");
-        for (String command : input.stream().skip(1).filter(command -> !command.contains("ls")).collect(Collectors.toList())) {
+        for (String command : input.stream().skip(1).collect(Collectors.toList())) {
             if (command.contains("cd")) {
                 if (command.contains("..")) {
                     currentDirectory = currentDirectory.getParent();
@@ -29,11 +29,22 @@ public class DaySeven implements Day {
                     }
                     currentDirectory = currentDirectory.goToChild(goToDirectory);
                 }
-            } else if (!command.contains("dir")) {
+            } else if (!command.contains("dir") && !command.contains("$ ls")) {
 //                Add size of file in currentDirectory
+                int size = Integer.parseInt(command.split(" ")[0]);
+                currentDirectory.increaseSize(size);
             }
         }
+        MapNode rootDirectory = returnToRootDirectory(currentDirectory);
+        System.out.println(rootDirectory.toString());
         return 0;
+    }
+
+    private MapNode returnToRootDirectory(MapNode currentDirectory) {
+        while (currentDirectory.getParent() != null) {
+            currentDirectory = currentDirectory.getParent();
+        }
+        return currentDirectory;
     }
 }
 
@@ -91,5 +102,18 @@ class MapNode {
 
     public void addChild(MapNode newChild) {
         this.children.add(newChild);
+    }
+
+    public void increaseSize(int size) {
+        this.totalSize += size;
+    }
+
+    @Override
+    public String toString() {
+        return "MapNode{" +
+                "children=" + children +
+                ", name='" + name + '\'' +
+                ", totalSize=" + totalSize +
+                '}';
     }
 }
