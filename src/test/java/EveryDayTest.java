@@ -98,6 +98,6 @@ public class EveryDayTest {
         //act
         int totalMemory = daySeven.execute(commands);
         //assert
-        Assertions.assertEquals(95437, totalMemory);
+        Assertions.assertEquals(24933642, totalMemory);
     }
 }
