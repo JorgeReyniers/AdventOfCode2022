@@ -16,18 +16,21 @@ public class DaySeven implements Day {
 //        8504156 c.dat
 //        dir d
         MapNode currentDirectory = new MapNode(null, "/");
-        for (String command : input.stream().skip(1).collect(Collectors.toList())) {
+        for (String command : input.stream().skip(1).filter(command -> !command.contains("ls")).collect(Collectors.toList())) {
             if (command.contains("cd")) {
                 if (command.contains("..")) {
                     currentDirectory = currentDirectory.getParent();
                 } else {
-                    String goToDirectory = command.replace("$ cd ","");
-                    if (currentDirectory.hasChild(goToDirectory)) {
-                        currentDirectory = currentDirectory.goToChild(goToDirectory);
-                    } else {
+                    String goToDirectory = command.replace("$ cd ", "");
+                    if (!currentDirectory.hasChild(goToDirectory)) {
 //                        create new directory, add to parent and go to child
+                        MapNode newChild = new MapNode(currentDirectory, goToDirectory);
+                        currentDirectory.addChild(newChild);
                     }
+                    currentDirectory = currentDirectory.goToChild(goToDirectory);
                 }
+            } else if (!command.contains("dir")) {
+//                Add size of file in currentDirectory
             }
         }
         return 0;
@@ -41,6 +44,7 @@ class MapNode {
     private int totalSize;
 
     MapNode(MapNode parent, String name) {
+        this.children = new ArrayList<>();
         this.parent = parent;
         this.name = name;
     }
@@ -78,12 +82,14 @@ class MapNode {
     }
 
     public boolean hasChild(String goToDirectory) {
-//        todo
-        return true;
+        return this.children.stream().anyMatch(child -> child.getName() == goToDirectory);
     }
 
     public MapNode goToChild(String goToDirectory) {
-//        todo
-        return null;
+        return this.children.stream().filter(child -> child.getName() == goToDirectory).findFirst().get();
+    }
+
+    public void addChild(MapNode newChild) {
+        this.children.add(newChild);
     }
 }
