@@ -13,7 +13,8 @@ public class Main {
 //            execute(new DayFour(), "dayFour.txt");
 //            executeDayFive(new DayFive(), "dayFive.txt");
 //            execute(new DaySix(), "daySix.txt");
-            execute(new DaySeven(), "daySeven.txt");
+//            execute(new DaySeven(), "daySeven.txt");
+            execute(new DayEight(), "dayEight.txt");
         } catch (IOException e) {
             System.out.println(e);
         } catch (URISyntaxException e) {
