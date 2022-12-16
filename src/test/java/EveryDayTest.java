@@ -107,8 +107,8 @@ public class EveryDayTest {
         Utils utils = new Utils();
         ArrayList<String> treeGrid = utils.ReadFile("testDayEight.txt");
         //act
-        int visibleTrees = dayEight.execute(treeGrid);
+        int bestScore = dayEight.execute(treeGrid);
         //assert
-        Assertions.assertEquals(21, visibleTrees);
+        Assertions.assertEquals(8, bestScore);
     }
 }

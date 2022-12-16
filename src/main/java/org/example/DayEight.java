@@ -13,63 +13,85 @@ public class DayEight implements Day{
     }
 
     private int countVisibleTrees(int[][] treeMap) {
-        int visibleTrees = 0;
+        int scenicScore = 0;
         for (int i = 0 ; i < treeMap.length ; i++) {
             for (int j = 0 ; j < treeMap[i].length ; j++) {
                 if (i == 0 || i == treeMap.length - 1 || j == 0 || j == treeMap[i].length - 1) {
-                    visibleTrees++;
                     continue;
                 }
 
-                //check left side
-                if (isHorizontallyVisible(0, j, j, treeMap[i])) {
-                    visibleTrees++;
-                    continue;
-                }
+                int horizontalFrontScore = calculateScoreHorizontallyFront(j-1, 0, j, treeMap[i]);
 
-                //check right side
-                if (isHorizontallyVisible(j+1, treeMap[i].length, j, treeMap[i])) {
-                    visibleTrees++;
-                    continue;
-                }
+                int horizontalBackScore = calculateScoreHorizontally(j+1, treeMap[i].length, j, treeMap[i]);
 
-                if (isVerticallyVisible(treeMap, 0, i, i, j)) {
-                    visibleTrees++;
-                    continue;
-                }
+                int verticalFrontScore = calculateScoreVerticallyFront(treeMap, i-1, 0, i, j);
 
-                if (isVerticallyVisible(treeMap, i+1, treeMap.length, i, j)) {
-                    visibleTrees++;
-                }
+                int verticalBackScore = calculateScoreVertically(treeMap, i+1, treeMap.length, i, j);
+
+                int treeScenicScore = horizontalFrontScore * horizontalBackScore * verticalFrontScore * verticalBackScore;
+                if (treeScenicScore > scenicScore) scenicScore = treeScenicScore;
             }
         }
-        return visibleTrees;
+        return scenicScore;
     }
 
-    private boolean isHorizontallyVisible(int start, int end, int horizontalPosition, int[] verticalLine) {
-        boolean isVisible = true;
+    private int calculateScoreHorizontallyFront(int start, int end, int horizontalPosition, int[] verticalLine) {
+        int score = 0;
+        for (int k = start ; k >= end ; k--) {
+            if (verticalLine[k] < verticalLine[horizontalPosition]) {
+                score++;
+            } else {
+                score++;
+                break;
+            }
+        }
+        if (score == 0) score++;
+        return score;
+    }
+
+    private int calculateScoreHorizontally(int start, int end, int horizontalPosition, int[] verticalLine) {
+        int score = 0;
         for (int k = start ; k < end ; k++) {
-            if (verticalLine[k] >= verticalLine[horizontalPosition]) {
-                isVisible = false;
+            if (verticalLine[k] < verticalLine[horizontalPosition]) {
+                score++;
+            } else {
+                score++;
                 break;
             }
         }
-
-        return isVisible;
+        if (score == 0) score++;
+        return score;
     }
 
-    private boolean isVerticallyVisible(int[][] treeMap, int start, int end, int verticalPosition, int horizontalPosition) {
-        boolean isVisible = true;
+    private int calculateScoreVerticallyFront(int[][] treeMap, int start, int end, int verticalPosition, int horizontalPosition) {
+        int score = 0;
+        for (int k = start; k >= end ; k--) {
+            if (treeMap[k][horizontalPosition] < treeMap[verticalPosition][horizontalPosition]) {
+                score++;
+            } else {
+                score++;
+                break;
+            }
+        }
+        if (score == 0) score++;
+        return score;
+    }
+
+    private int calculateScoreVertically(int[][] treeMap, int start, int end, int verticalPosition, int horizontalPosition) {
+        int score = 0;
         for (int k = start; k < end ; k++) {
-            if (treeMap[k][horizontalPosition] >= treeMap[verticalPosition][horizontalPosition]) {
-                isVisible = false;
+            if (treeMap[k][horizontalPosition] < treeMap[verticalPosition][horizontalPosition]) {
+                score++;
+            } else {
+                score++;
                 break;
             }
         }
-        return isVisible;
+        if (score == 0) score++;
+        return score;
     }
 
-    private static void fillTreeMap(ArrayList<String> input, int[][] treeMap) {
+    private void fillTreeMap(ArrayList<String> input, int[][] treeMap) {
         for (int i = 0; i < input.size() ; i++) {
             String[] trees = input.get(i).split("");
             for (int j = 0 ; j < trees.length ; j++) {
