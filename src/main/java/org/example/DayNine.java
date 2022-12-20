@@ -59,11 +59,6 @@ public class DayNine implements Day {
                             knots[j+1][1] = knots[j][1] + 1;
                         }
                     }
-                    // . T . T .
-                    // T . . . T
-                    // . . H . .
-                    // T . . . T
-                    // . T . T .
 
                     // . . . . .
                     // T . . . .
