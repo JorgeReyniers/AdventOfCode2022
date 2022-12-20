@@ -120,6 +120,18 @@ public class EveryDayTest {
         //act
         int amountOfPositions = dayNine.execute(moves);
         //assert
-        Assertions.assertEquals(13, amountOfPositions);
+        Assertions.assertEquals(1, amountOfPositions);
+    }
+
+    @Test
+    void DayNineLarger() throws IOException, URISyntaxException {
+        //arrange
+        DayNine dayNine = new DayNine();
+        Utils utils = new Utils();
+        ArrayList<String> moves = utils.ReadFile("testDayNineLarger.txt");
+        //act
+        int amountOfPositions = dayNine.execute(moves);
+        //assert
+        Assertions.assertEquals(36, amountOfPositions);
     }
 }
