@@ -5,29 +5,44 @@ import java.util.ArrayList;
 public class DayTen implements Day{
     @Override
     public int execute(ArrayList<String> input) {
-        int totalSignalStrength = 0;
-        int currentSignalStrength = 1;
-        int cycleCount = 0;
+        int spritePosition = 0;
+        int drawPosition = 0;
+        StringBuilder stringBuilder = new StringBuilder();
         for (String instruction : input) {
             if (instruction.equals("noop")) {
-                cycleCount++;
-                totalSignalStrength = calculateTotalSignalStrength(totalSignalStrength, currentSignalStrength, cycleCount);
+                if (draw(spritePosition, drawPosition, stringBuilder)) {
+                    drawPosition = 0;
+                } else {
+                    drawPosition++;
+                };
             } else {
                 int signalStrength = Integer.parseInt(instruction.split(" ")[1]);
                 for (int i = 1 ; i <= 2 ; i++) {
-                    cycleCount++;
-                    totalSignalStrength = calculateTotalSignalStrength(totalSignalStrength, currentSignalStrength, cycleCount);
+                    if (draw(spritePosition, drawPosition, stringBuilder)) {
+                        drawPosition = 0;
+                    } else {
+                        drawPosition++;
+                    }
                 }
-                currentSignalStrength += signalStrength;
+                spritePosition += signalStrength;
             }
         }
-        return totalSignalStrength;
+        System.out.println(stringBuilder);
+        return 0;
     }
 
-    private static int calculateTotalSignalStrength(int totalSignalStrength, int currentSignalStrength, int cycleCount) {
-        if ((cycleCount == 20 || (cycleCount -20)%40 == 0) && cycleCount < 221) {
-            totalSignalStrength += currentSignalStrength*cycleCount;
+    private static boolean draw(int spritePosition, int drawPosition, StringBuilder stringBuilder) {
+        if (drawPosition == spritePosition || drawPosition == spritePosition +1 || drawPosition == spritePosition +2) {
+            stringBuilder.append('#');
+        } else {
+            stringBuilder.append('.');
         }
-        return totalSignalStrength;
+
+        if (drawPosition == 39) {
+            stringBuilder.append(System.lineSeparator());
+            return true;
+        }
+
+        return false;
     }
 }

@@ -144,6 +144,6 @@ public class EveryDayTest {
         //act
         int signalStrength = dayTen.execute(instructions);
         //assert
-        Assertions.assertEquals(13140, signalStrength);
+        Assertions.assertEquals(0, signalStrength);
     }
 }
