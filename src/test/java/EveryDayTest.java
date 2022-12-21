@@ -134,4 +134,16 @@ public class EveryDayTest {
         //assert
         Assertions.assertEquals(36, amountOfPositions);
     }
+
+    @Test
+    void DayTen() throws IOException, URISyntaxException {
+        //arrange
+        DayTen dayTen = new DayTen();
+        Utils utils = new Utils();
+        ArrayList<String> instructions = utils.ReadFile("testDayTen.txt");
+        //act
+        int signalStrength = dayTen.execute(instructions);
+        //assert
+        Assertions.assertEquals(13140, signalStrength);
+    }
 }
