@@ -19,24 +19,8 @@ public class Operation {
         return operator;
     }
 
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
     public int getAmount() {
         return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    @Override
-    public String toString() {
-        return "Operation{" +
-                "operator='" + operator + '\'' +
-                ", amount=" + amount +
-                '}';
     }
 
     @Override

@@ -48,17 +48,6 @@ public class Monkey {
         return totalInspected;
     }
 
-    @Override
-    public String toString() {
-        return "Monkey{" +
-                "items=" + items +
-                ", operation=" + operation +
-                ", divider=" + divider +
-                ", divisibleMonkeyNumber=" + divisibleMonkeyNumber +
-                ", nonDivisibleMonkeyNumber=" + nonDivisibleMonkeyNumber +
-                '}';
-    }
-
     public void addItem(Item item) {
         items.add(item);
     }
