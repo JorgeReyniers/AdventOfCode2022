@@ -1,4 +1,7 @@
 import org.example.*;
+import org.example.DayElevenDomain.Item;
+import org.example.DayElevenDomain.Monkey;
+import org.example.DayElevenDomain.Operation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -6,6 +9,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class EveryDayTest {
     @Test
@@ -145,5 +149,49 @@ public class EveryDayTest {
         int signalStrength = dayTen.execute(instructions);
         //assert
         Assertions.assertEquals(0, signalStrength);
+    }
+
+    @Test
+    void DayEleven_CreateMonkeys() throws IOException, URISyntaxException {
+        //arrange
+        DayEleven dayEleven = new DayEleven();
+        Utils utils = new Utils();
+        ArrayList<String> observations = utils.ReadFile("testDayEleven.txt");
+        //act
+        List<Monkey> monkeys = DayEleven.createMonkeys(observations);
+        //assert
+        List<Monkey> expectedMonkeys = new ArrayList<>();
+        Monkey monkey1 = createMonkey(List.of(79, 98), "*", 19, 23, 2, 3);
+        Monkey monkey2 = createMonkey(List.of(54,65,75,74), "+", 6, 19, 2, 0);
+        Monkey monkey3 = createMonkey(List.of(79,60,97), "*", 0, 13, 1, 3);
+        Monkey monkey4 = createMonkey(List.of(74), "+", 3, 17, 0, 1);
+        Assertions.assertEquals(monkey1, monkeys.get(0));
+        Assertions.assertEquals(monkey2, monkeys.get(1));
+        Assertions.assertEquals(monkey3, monkeys.get(2));
+        Assertions.assertEquals(monkey4, monkeys.get(3));
+    }
+
+    private static Monkey createMonkey(List<Integer> worryLevels, String operator, int amount, int divider, int divisibleMonkeyNumber, int nonDivisibleMonkeyNumber) {
+        Monkey monkey = new Monkey();
+        for (int worryLevel : worryLevels) {
+            monkey.addItem(new Item(worryLevel));
+        }
+        monkey.setOperation(new Operation(operator, amount));
+        monkey.setDivider(divider);
+        monkey.setDivisibleMonkeyNumber(divisibleMonkeyNumber);
+        monkey.setNonDivisibleMonkeyNumber(nonDivisibleMonkeyNumber);
+        return monkey;
+    }
+
+    @Test
+    void DayEleven() throws IOException, URISyntaxException {
+        //arrange
+        DayEleven dayEleven = new DayEleven();
+        Utils utils = new Utils();
+        ArrayList<String> observations = utils.ReadFile("testDayEleven.txt");
+        //act
+        int monkeyBusiness = dayEleven.execute(observations);
+        //assert
+        Assertions.assertEquals(10605, monkeyBusiness);
     }
 }

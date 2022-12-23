@@ -16,7 +16,8 @@ public class Main {
 //            execute(new DaySeven(), "daySeven.txt");
 //            execute(new DayEight(), "dayEight.txt");
 //            execute(new DayNine(), "dayNine.txt");
-            execute(new DayTen(), "DayTen.txt");
+//            execute(new DayTen(), "DayTen.txt");
+            execute(new DayEleven(), "DayEleven.txt");
         } catch (IOException e) {
             System.out.println(e);
         } catch (URISyntaxException e) {
