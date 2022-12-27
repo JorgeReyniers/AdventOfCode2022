@@ -1,20 +1,21 @@
 package org.example.DayElevenDomain;
 
+import java.math.BigInteger;
 import java.util.Objects;
 
 public class Item {
-    private int worryLevel;
+    private BigInteger worryLevel;
     private int throwToMonkeyNumber;
 
-    public Item(int worryLevel) {
+    public Item(BigInteger worryLevel) {
         this.worryLevel = worryLevel;
     }
 
-    public int getWorryLevel() {
+    public BigInteger getWorryLevel() {
         return worryLevel;
     }
 
-    public void setWorryLevel(int worryLevel) {
+    public void setWorryLevel(BigInteger worryLevel) {
         this.worryLevel = worryLevel;
     }
 

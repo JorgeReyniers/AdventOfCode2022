@@ -1,5 +1,6 @@
 package org.example.DayElevenDomain;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,10 +8,10 @@ import java.util.Objects;
 public class Monkey {
     private List<Item> items;
     private Operation operation;
-    private int divider;
+    private BigInteger divider;
     private int divisibleMonkeyNumber;
     private int nonDivisibleMonkeyNumber;
-    private int totalInspected = 0;
+    private long totalInspected = 0;
 
     public Monkey() {
         items = new ArrayList<>();
@@ -19,7 +20,7 @@ public class Monkey {
     public void createOperation(String observation) {
         observation = observation.replace("  Operation: new = old ", "");
         String[] operation = observation.split(" ");
-        int amount = operation[1].equals("old") ? 0 : Integer.parseInt(operation[1]);
+        BigInteger amount = operation[1].equals("old") ? new BigInteger("0") : new BigInteger(operation[1]);
         this.operation = new Operation(operation[0], amount);
     }
 
@@ -29,10 +30,10 @@ public class Monkey {
 
     public void createDivider(String divider) {
         divider = divider.replace("  Test: divisible by ", "");
-        this.divider = Integer.parseInt(divider);
+        this.divider = new BigInteger(divider);
     }
 
-    public void setDivider(int divider) {
+    public void setDivider(BigInteger divider) {
         this.divider = divider;
     }
 
@@ -44,7 +45,7 @@ public class Monkey {
         this.nonDivisibleMonkeyNumber = nonDivisibleMonkeyNumber;
     }
 
-    public int getTotalInspected() {
+    public long getTotalInspected() {
         return totalInspected;
     }
 
@@ -56,7 +57,7 @@ public class Monkey {
         observation = observation.replace("  Starting items: ", "");
         String[] worryLevels = observation.split(", ");
         for (int i = 0; i < worryLevels.length; i++) {
-            items.add(new Item(Integer.parseInt(worryLevels[i])));
+            items.add(new Item(new BigInteger(worryLevels[i])));
         }
     }
 
@@ -86,17 +87,22 @@ public class Monkey {
         for (Item item : items) {
             totalInspected++;
             item.setWorryLevel(calculateNewWorryLevel(item));
-            int throwToMonkeyNumber = item.getWorryLevel() % divider == 0 ? divisibleMonkeyNumber : nonDivisibleMonkeyNumber;
+            int throwToMonkeyNumber = item.getWorryLevel().mod(divider).equals(new BigInteger("0")) ? divisibleMonkeyNumber : nonDivisibleMonkeyNumber;
             item.setThrowToMonkeyNumber(throwToMonkeyNumber);
         }
+        System.out.println();
     }
 
-    private int calculateNewWorryLevel(Item item) {
-        int amount = operation.isAmountSameAsWorryLevel() ? item.getWorryLevel() : operation.getAmount();
+    private BigInteger calculateNewWorryLevel(Item item) {
+        BigInteger amount = operation.isAmountSameAsWorryLevel() ? item.getWorryLevel() : operation.getAmount();
         if (operation.getOperator().equals("*")) {
-            return Math.round((item.getWorryLevel() * amount) / 3);
+            BigInteger multiply = item.getWorryLevel().multiply(amount);
+            System.out.println(item.getWorryLevel() + "*" + amount + " = " + multiply);
+            return multiply;
         } else {
-            return Math.round((item.getWorryLevel() + amount) / 3);
+            BigInteger add = item.getWorryLevel().add(amount);
+            System.out.println(item.getWorryLevel() + "+" + amount + " = " + add);
+            return add;
         }
     }
 

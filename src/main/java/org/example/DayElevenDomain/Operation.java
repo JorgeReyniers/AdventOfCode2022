@@ -1,25 +1,26 @@
 package org.example.DayElevenDomain;
 
+import java.math.BigInteger;
 import java.util.Objects;
 
 public class Operation {
     private String operator;
-    private int amount;
+    private BigInteger amount;
 
-    public Operation(String operator, int amount) {
+    public Operation(String operator, BigInteger amount) {
         this.operator = operator;
         this.amount = amount;
     }
 
     public boolean isAmountSameAsWorryLevel() {
-        return amount == 0;
+        return amount.equals(new BigInteger("0"));
     }
 
     public String getOperator() {
         return operator;
     }
 
-    public int getAmount() {
+    public BigInteger getAmount() {
         return amount;
     }
 

@@ -7,25 +7,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DayEleven implements Day {
-    @Override
-    public int execute(ArrayList<String> input) {
+public class DayEleven{
+    public long execute(ArrayList<String> input) {
         List<Monkey> monkeys = createMonkeys(input);
-        for (int i = 1; i <= 20; i++) {
-            for (Monkey monkey : monkeys) {
-                System.out.println(monkey.getItems());
-            }
-            System.out.println();
+        for (int i = 1; i <= 10000; i++) {
             playKeepAwayRound(monkeys);
+            System.out.println(i);
+            System.out.println("---------------------------");
+            System.out.println(calculateLevelOfMonkeyBusiness(monkeys));
+            System.out.println();
         }
         return calculateLevelOfMonkeyBusiness(monkeys);
     }
 
-    private int calculateLevelOfMonkeyBusiness(List<Monkey> monkeys) {
-        List<Integer> mostInspected = new ArrayList<>();
+    private long calculateLevelOfMonkeyBusiness(List<Monkey> monkeys) {
+        List<Long> mostInspected = new ArrayList<>();
         for (Monkey monkey : monkeys) {
             mostInspected.add(monkey.getTotalInspected());
         }
+        System.out.println(mostInspected);
         Collections.sort(mostInspected, Collections.reverseOrder());
         return mostInspected.get(0) * mostInspected.get(1);
     }
@@ -45,7 +45,7 @@ public class DayEleven implements Day {
         monkey.removeAllItems();
     }
 
-    private static Monkey createMonkey(List<Monkey> monkeys, Monkey monkey) {
+    private Monkey createMonkey(List<Monkey> monkeys, Monkey monkey) {
         if (monkey != null) {
             monkeys.add(monkey);
         }
@@ -53,7 +53,7 @@ public class DayEleven implements Day {
         return monkey;
     }
 
-    public static List<Monkey> createMonkeys(ArrayList<String> observations) {
+    public List<Monkey> createMonkeys(ArrayList<String> observations) {
         List<Monkey> monkeys = new ArrayList<>();
         Monkey monkey = null;
         for (String observation : observations) {

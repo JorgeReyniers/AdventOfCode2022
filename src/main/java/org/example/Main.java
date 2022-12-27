@@ -17,12 +17,18 @@ public class Main {
 //            execute(new DayEight(), "dayEight.txt");
 //            execute(new DayNine(), "dayNine.txt");
 //            execute(new DayTen(), "DayTen.txt");
-            execute(new DayEleven(), "DayEleven.txt");
+            executeDayEleven(new DayEleven(), "DayEleven.txt");
         } catch (IOException e) {
             System.out.println(e);
         } catch (URISyntaxException e) {
             System.out.println(e);
         }
+    }
+
+    private static void executeDayEleven(DayEleven dayEleven, String inputFile) throws IOException, URISyntaxException {
+        Utils utils = new Utils();
+        ArrayList<String> inputDay = utils.ReadFile(inputFile);
+        System.out.println(dayEleven.execute(inputDay));
     }
 
     private static void executeDayFive(DayFive dayFive, String inputFile) throws IOException, URISyntaxException {
