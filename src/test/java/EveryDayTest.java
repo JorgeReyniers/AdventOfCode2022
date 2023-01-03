@@ -199,6 +199,21 @@ public class EveryDayTest {
     }
 
     @Test
+    void DayTwelve_FindStartingPoint() throws IOException, URISyntaxException {
+        //arrange
+        DayTwelve dayTwelve = new DayTwelve();
+        Utils utils = new Utils();
+        ArrayList<String> observations = utils.ReadFile("testDayTwelve.txt");
+        //act
+        String[][] heightMap = dayTwelve.createHeightMap(observations);
+        int[] startingCoordinates = dayTwelve.getStartingCoordinates(heightMap);
+        //assert
+        Assertions.assertEquals(2, startingCoordinates.length);
+        Assertions.assertEquals(0, startingCoordinates[0]);
+        Assertions.assertEquals(0, startingCoordinates[1]);
+    }
+
+    @Test
     void DayTwelve() throws IOException, URISyntaxException {
         //arrange
         DayTwelve dayTwelve = new DayTwelve();
