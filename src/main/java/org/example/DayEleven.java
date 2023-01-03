@@ -21,7 +21,6 @@ public class DayEleven{
         for (Monkey monkey : monkeys) {
             mostInspected.add(monkey.getTotalInspected());
         }
-        System.out.println(mostInspected);
         Collections.sort(mostInspected, Collections.reverseOrder());
         return mostInspected.get(0) * mostInspected.get(1);
     }

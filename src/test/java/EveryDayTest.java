@@ -168,7 +168,7 @@ public class EveryDayTest {
                 "*", new BigInteger("0"), new BigInteger("13"), 1, 3);
         Monkey monkey4 = createMonkey(List.of(new BigInteger("74")), "+", new BigInteger("3"), new BigInteger("17"),
                 0, 1);
-        Assertions.assertEquals(monkey1, monkeys.get(0));
+        Assertions.assertTrue(monkey1.equals(monkeys.get(0)));
         Assertions.assertEquals(monkey2, monkeys.get(1));
         Assertions.assertEquals(monkey3, monkeys.get(2));
         Assertions.assertEquals(monkey4, monkeys.get(3));
@@ -196,5 +196,17 @@ public class EveryDayTest {
         long monkeyBusiness = dayEleven.execute(observations);
         //assert
         Assertions.assertEquals(2713310158L, monkeyBusiness);
+    }
+
+    @Test
+    void DayTwelve() throws IOException, URISyntaxException {
+        //arrange
+        DayTwelve dayTwelve = new DayTwelve();
+        Utils utils = new Utils();
+        ArrayList<String> observations = utils.ReadFile("testDayTwelve.txt");
+        //act
+        int fewestStepsAmount = dayTwelve.execute(observations);
+        //assert
+        Assertions.assertEquals(31, fewestStepsAmount);
     }
 }
