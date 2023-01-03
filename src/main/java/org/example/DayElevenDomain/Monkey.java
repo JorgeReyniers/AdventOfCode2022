@@ -90,20 +90,17 @@ public class Monkey {
             int throwToMonkeyNumber = item.getWorryLevel().mod(divider).equals(new BigInteger("0")) ? divisibleMonkeyNumber : nonDivisibleMonkeyNumber;
             item.setThrowToMonkeyNumber(throwToMonkeyNumber);
         }
-        System.out.println();
     }
 
     private BigInteger calculateNewWorryLevel(Item item) {
         BigInteger amount = operation.isAmountSameAsWorryLevel() ? item.getWorryLevel() : operation.getAmount();
+        BigInteger newWorryLevel;
         if (operation.getOperator().equals("*")) {
-            BigInteger multiply = item.getWorryLevel().multiply(amount);
-            System.out.println(item.getWorryLevel() + "*" + amount + " = " + multiply);
-            return multiply;
+            newWorryLevel = item.getWorryLevel().multiply(amount).mod(new BigInteger("9699690")) ;
         } else {
-            BigInteger add = item.getWorryLevel().add(amount);
-            System.out.println(item.getWorryLevel() + "+" + amount + " = " + add);
-            return add;
+            newWorryLevel = item.getWorryLevel().add(amount).mod(new BigInteger("9699690"));
         }
+        return newWorryLevel;
     }
 
     public void removeAllItems() {

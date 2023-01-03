@@ -12,10 +12,6 @@ public class DayEleven{
         List<Monkey> monkeys = createMonkeys(input);
         for (int i = 1; i <= 10000; i++) {
             playKeepAwayRound(monkeys);
-            System.out.println(i);
-            System.out.println("---------------------------");
-            System.out.println(calculateLevelOfMonkeyBusiness(monkeys));
-            System.out.println();
         }
         return calculateLevelOfMonkeyBusiness(monkeys);
     }
