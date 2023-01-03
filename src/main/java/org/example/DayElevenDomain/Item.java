@@ -1,21 +1,18 @@
 package org.example.DayElevenDomain;
 
-import java.math.BigInteger;
-import java.util.Objects;
-
 public class Item {
-    private BigInteger worryLevel;
+    private long worryLevel;
     private int throwToMonkeyNumber;
 
-    public Item(BigInteger worryLevel) {
+    public Item(int worryLevel) {
         this.worryLevel = worryLevel;
     }
 
-    public BigInteger getWorryLevel() {
+    public long getWorryLevel() {
         return worryLevel;
     }
 
-    public void setWorryLevel(BigInteger worryLevel) {
+    public void setWorryLevel(long worryLevel) {
         this.worryLevel = worryLevel;
     }
 
@@ -29,8 +26,6 @@ public class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
         return worryLevel == item.worryLevel;
     }

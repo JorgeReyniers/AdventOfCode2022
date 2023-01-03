@@ -1,6 +1,5 @@
 package org.example.DayElevenDomain;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +7,7 @@ import java.util.Objects;
 public class Monkey {
     private List<Item> items;
     private Operation operation;
-    private BigInteger divider;
+    private int divider;
     private int divisibleMonkeyNumber;
     private int nonDivisibleMonkeyNumber;
     private long totalInspected = 0;
@@ -20,7 +19,7 @@ public class Monkey {
     public void createOperation(String observation) {
         observation = observation.replace("  Operation: new = old ", "");
         String[] operation = observation.split(" ");
-        BigInteger amount = operation[1].equals("old") ? new BigInteger("0") : new BigInteger(operation[1]);
+        int amount = operation[1].equals("old") ? 0 : Integer.parseInt(operation[1]);
         this.operation = new Operation(operation[0], amount);
     }
 
@@ -30,10 +29,10 @@ public class Monkey {
 
     public void createDivider(String divider) {
         divider = divider.replace("  Test: divisible by ", "");
-        this.divider = new BigInteger(divider);
+        this.divider = Integer.parseInt(divider);
     }
 
-    public void setDivider(BigInteger divider) {
+    public void setDivider(int divider) {
         this.divider = divider;
     }
 
@@ -57,14 +56,12 @@ public class Monkey {
         observation = observation.replace("  Starting items: ", "");
         String[] worryLevels = observation.split(", ");
         for (int i = 0; i < worryLevels.length; i++) {
-            items.add(new Item(new BigInteger(worryLevels[i])));
+            items.add(new Item(Integer.parseInt(worryLevels[i])));
         }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
         Monkey monkey = (Monkey) o;
         return divider == monkey.divider && divisibleMonkeyNumber == monkey.divisibleMonkeyNumber && nonDivisibleMonkeyNumber == monkey.nonDivisibleMonkeyNumber && Objects.equals(items, monkey.items) && Objects.equals(operation, monkey.operation);
     }
@@ -87,18 +84,19 @@ public class Monkey {
         for (Item item : items) {
             totalInspected++;
             item.setWorryLevel(calculateNewWorryLevel(item));
-            int throwToMonkeyNumber = item.getWorryLevel().mod(divider).equals(new BigInteger("0")) ? divisibleMonkeyNumber : nonDivisibleMonkeyNumber;
+            int throwToMonkeyNumber = item.getWorryLevel() % divider == 0 ? divisibleMonkeyNumber : nonDivisibleMonkeyNumber;
             item.setThrowToMonkeyNumber(throwToMonkeyNumber);
         }
     }
 
-    private BigInteger calculateNewWorryLevel(Item item) {
-        BigInteger amount = operation.isAmountSameAsWorryLevel() ? item.getWorryLevel() : operation.getAmount();
-        BigInteger newWorryLevel;
+    private long calculateNewWorryLevel(Item item) {
+        long amount = operation.isAmountSameAsWorryLevel() ? item.getWorryLevel() : operation.getAmount();
+        long newWorryLevel;
         if (operation.getOperator().equals("*")) {
-            newWorryLevel = item.getWorryLevel().multiply(amount).mod(new BigInteger("9699690")) ;
+            //If you want to execute for main input -> change to 9699690
+            newWorryLevel = (item.getWorryLevel() * amount) % 96577;
         } else {
-            newWorryLevel = item.getWorryLevel().add(amount).mod(new BigInteger("9699690"));
+            newWorryLevel = (item.getWorryLevel() + amount) % 96577;
         }
         return newWorryLevel;
     }
