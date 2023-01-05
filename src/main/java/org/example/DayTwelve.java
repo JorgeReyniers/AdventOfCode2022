@@ -7,7 +7,12 @@ public class DayTwelve implements Day {
     public int execute(ArrayList<String> input) {
         String[][] heightMap = createHeightMap(input);
         int[] startingCoordinates = getStartingCoordinates(heightMap);
+        searchForPath(heightMap, startingCoordinates);
         return 0;
+    }
+
+    private void searchForPath(String[][] heightMap, int[] coordinates) {
+
     }
 
     public String[][] createHeightMap(ArrayList<String> input) {
